@@ -64,12 +64,7 @@ fun Brie(name: String, sellIn: Int, quality: Int) = BaseItem(
     name,
     sellIn,
     quality,
-    degradation = { currentSellIn, _ ->
-        when {
-            currentSellIn < 0 -> -2
-            else -> -1
-        }
-    }
+    degradation = Degradation.standard * -1
 )
 
 fun Pass(name: String, sellIn: Int, quality: Int) = BaseItem(
@@ -90,13 +85,12 @@ fun Conjured(name: String, sellIn: Int, quality: Int) = BaseItem(
     name,
     sellIn,
     quality,
-    degradation = { currentSellIn: Int, _: Int ->
-        when {
-            currentSellIn < 0 -> 4
-            else -> 2
-        }
-    }
+    degradation = Degradation.standard * 2
 )
+
+operator fun ((Int, Int) -> Int).times(multiplier: Int) = { p1: Int, p2: Int ->
+    this(p1, p2) * multiplier
+}
 
 
 
