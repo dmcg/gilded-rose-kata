@@ -13,5 +13,18 @@ class Item(
         quality = saturation(quality - degradation(sellIn, quality))
     }
 
+    fun updated(): Item {
+        val sellIn = sellIn - aging()
+        val quality = saturation(quality - degradation(sellIn, quality))
+        return Item(
+            name,
+            sellIn = sellIn,
+            quality = quality,
+            aging = aging,
+            degradation = degradation,
+            saturation = saturation,
+        )
+    }
+
     override fun toString() = "$name, $sellIn, $quality"
 }
