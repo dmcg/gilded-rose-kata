@@ -19,11 +19,11 @@ class TexttestFixture {
         )
         val days = 10
 
-        val apps = generateSequence(GildedRose(items)) { it.updated() }
+        val apps = generateSequence(items) { it.updated() }
         val lines = apps.take(days).flatMapIndexed { i, app ->
             listOf("-------- day $i --------") +
                 "name, sellIn, quality" +
-                app.items.map { it.toString() } + ""
+                app.map { it.toString() } + ""
         }
         assertEquals(expected, lines.joinToString("\n"))
     }
