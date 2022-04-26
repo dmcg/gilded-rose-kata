@@ -11,7 +11,7 @@ class TexttestFixture {
         val outputStream = ByteArrayOutputStream()
         val out = PrintStream(outputStream)
         out.println("OMGHAI!")
-        val items = arrayOf<Item>(
+        val items = listOf(
             Item("+5 Dexterity Vest", 10, 20),  //
             Brie("Aged Brie", 2, 0),  //
             Item("Elixir of the Mongoose", 5, 7),  //
@@ -27,7 +27,7 @@ class TexttestFixture {
         for (i in 0 until days) {
             out.println("-------- day $i --------")
             out.println("name, sellIn, quality")
-            for (item in items) {
+            for (item in app.items) {
                 out.println(item)
             }
             out.println()
